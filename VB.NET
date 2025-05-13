@@ -1,0 +1,18 @@
+Function EstNumeroCamerounais(numero As String) As Boolean
+    ' Nettoyer les espaces et les tirets
+    Dim nettoye As String = numero.Replace(" ", "").Replace("-", "")
+    
+    ' Supprimer le préfixe international s'il existe
+    If nettoye.StartsWith("+237") Then
+        nettoye = nettoye.Substring(4)
+    ElseIf nettoye.StartsWith("00237") Then
+        nettoye = nettoye.Substring(5)
+    End If
+
+    ' Vérifier que le numéro a exactement 9 chiffres et commence par 6
+    If nettoye.Length = 9 AndAlso nettoye.StartsWith("6") AndAlso IsNumeric(nettoye) Then
+        Return True
+    Else
+        Return False
+    End If
+End Function
